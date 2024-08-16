@@ -1,14 +1,10 @@
-import { useState } from 'react';
-
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <div>
-        <h1>Проект готов к разработк</h1>
+        <h1>Проект готов к разработке</h1>
       </div>
     </>
   );
