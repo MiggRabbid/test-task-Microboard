@@ -1,6 +1,6 @@
 {
   "name": "test-task-microboard",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Test task for Microboard",
   "main": "index.js",
   "type": "module",

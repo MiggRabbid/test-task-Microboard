@@ -4,7 +4,7 @@ import styles from './GameField.module.scss';
 
 import useActions from '../../hooks/useActions';
 
-import { BASE_SHIFT, initialState } from './GameField.config';
+import { BASE_SHIFT, Hero1, Hero2 } from './GameField.config';
 
 import { Duel } from '../../entities/duel';
 import { Hero } from '../../entities/hero';
@@ -29,28 +29,6 @@ const GameField = () => {
     PositionLeft: 0,
     PositionTop: 0,
   });
-
-  const Hero1 = new Hero(
-    null,
-    initialState.Hero1.name,
-    BASE_SHIFT,
-    0,
-    initialState.Hero1.heroColor,
-    initialState.Hero1.heroSpeed,
-    initialState.Hero1.spellColor,
-    initialState.Hero1.spellSpeed,
-  );
-
-  const Hero2 = new Hero(
-    null,
-    initialState.Hero2.name,
-    0,
-    BASE_SHIFT,
-    initialState.Hero2.heroColor,
-    initialState.Hero2.heroSpeed,
-    initialState.Hero2.spellColor,
-    initialState.Hero2.spellSpeed,
-  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -85,14 +63,14 @@ const GameField = () => {
       const clickX = event.clientX - rect.left;
       const clickY = event.clientY - rect.top;
 
-      if (Hero1.isClicked(clickX, clickY)) {
+      if (Hero1.isIntersection(clickX, clickY)) {
         setColorMenuState({
           isOpen: true,
           Hero: Hero1,
           PositionLeft: clickX,
           PositionTop: clickY,
         });
-      } else if (Hero2.isClicked(clickX, clickY)) {
+      } else if (Hero2.isIntersection(clickX, clickY)) {
         setColorMenuState({
           isOpen: true,
           Hero: Hero2,
@@ -109,11 +87,44 @@ const GameField = () => {
       }
     };
 
+    let canChangeDirection = true;
+    const FREEZE_TIME = 300;
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+
+      /* Думаю, это костыли. Но костыли рабочие */
+      const checkIntersection = () => {
+        if (canChangeDirection && !ColorMenuState.isOpen) {
+          if (Hero1.isIntersection(mouseX, mouseY)) {
+            Hero1.reverseDirection();
+            canChangeDirection = false;
+          }
+
+          if (Hero2.isIntersection(mouseX, mouseY)) {
+            Hero2.reverseDirection();
+            canChangeDirection = false;
+          }
+
+          /* Защита от "тримера" героя. Скорее всего тоже костыль*/
+          setTimeout(() => {
+            canChangeDirection = true;
+          }, FREEZE_TIME);
+        }
+      };
+
+      checkIntersection();
+    };
+
     canvas.addEventListener('click', handleClick);
+    canvas.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       duel.stop();
       canvas.removeEventListener('click', handleClick);
+      canvas.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -132,8 +143,16 @@ const GameField = () => {
       />
       <canvas ref={canvasRef} className={styles.canvas} />
       <div className={styles.settings}>
-        <SettingsMenu Hero={Hero1} id="left" />
-        <SettingsMenu Hero={Hero2} id="right" />
+        <SettingsMenu
+          Hero={Hero1}
+          id="left"
+          ColorMenuIsOpen={ColorMenuState.isOpen}
+        />
+        <SettingsMenu
+          Hero={Hero2}
+          id="right"
+          ColorMenuIsOpen={ColorMenuState.isOpen}
+        />
       </div>
     </section>
   );

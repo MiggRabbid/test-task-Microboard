@@ -17,16 +17,18 @@ export class Hero {
     this.spellColor = spellColor;
     this.spellSpeed = spellSpeed;
   }
-  
+
   setContext(ctx: CanvasRenderingContext2D) {
     this.ctx = ctx;
   }
 
-  isClicked(clickX: number, clickY: number): boolean {
-    const distance = Math.sqrt(
-      (clickX - this.x) ** 2 + (clickY - this.y) ** 2
-    );
+  isIntersection(clickX: number, clickY: number): boolean {
+    const distance = Math.sqrt((clickX - this.x) ** 2 + (clickY - this.y) ** 2);
     return distance <= this.radius;
+  }
+
+  reverseDirection() {
+    this.direction *= -1;
   }
 
   draw() {
@@ -45,7 +47,7 @@ export class Hero {
       (!!this.ctx && this.y + this.radius > this.ctx.canvas.height) ||
       this.y - this.radius < 0
     ) {
-      this.direction *= -1;
+      this.reverseDirection();
     }
 
     this.draw();
