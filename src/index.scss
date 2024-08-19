@@ -1,0 +1,20 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:wght@400;500;700&display=swap');
+
+body {
+  @apply box-border p-0 m-0 bg-siteTheme-second;
+
+  * {
+    @apply p-0 m-0
+    font-siteFont font-normal not-italic text-sm
+    text-gray-200;
+  }
+}
+
+#root {
+  @apply mx-auto min-w-80 max-w-[1920px] min-h-screen
+  flex flex-col justify-between items-center;
+}

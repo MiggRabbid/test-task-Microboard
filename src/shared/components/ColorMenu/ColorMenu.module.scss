@@ -1,0 +1,36 @@
+.settings {
+  @apply absolute left-1/2 top-1/2
+  -translate-x-1/2 -translate-y-[80%]
+  p-3 rounded-md
+  bg-siteTheme-second bg-opacity-70;
+  
+  .settings__title {
+    @apply w-full mb-5
+    flex flex-row justify-between items-start;
+
+    h3 {
+      @apply font-bold text-2xl
+      uppercase text-siteTheme-ascent;
+    }
+
+    button {
+      @apply bg-siteTheme-second size-6 
+      rounded-md text-siteTheme-ascent
+      font-semibold;
+    }
+  }
+
+  .settings__item {
+    @apply flex flex-col gap-2 items-center;
+
+    .item__label {
+      @apply text-lg
+      uppercase font-semibold;
+    }
+
+    .item__input {
+      @apply w-5/6
+      bg-transparent;
+    }
+  }
+}

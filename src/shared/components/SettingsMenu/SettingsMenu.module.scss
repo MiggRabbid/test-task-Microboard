@@ -1,0 +1,47 @@
+.settings {
+  @apply w-1/2 h-fit  px-4
+  flex flex-col justify-between items-center;
+
+  .settings__title {
+    @apply w-full;
+
+    h3 {
+      @apply font-bold text-2xl
+      uppercase text-siteTheme-ascent;
+    }
+  }
+
+  .settings__item {
+    @apply flex flex-row;
+
+    .item__label {
+      @apply w-[150px] text-lg
+      uppercase font-semibold;
+    }
+
+    .item__input {
+      @apply w-[220px];
+    }
+  }
+
+  &[id='right'] {
+    .settings__title {
+      h3 {
+        @apply text-right;
+      }
+    }
+
+    .settings__item {
+      @apply flex-row-reverse;
+
+      .item__label {
+        @apply text-end
+      }
+
+      .item__input {
+        @apply rotate-180;
+      }
+    }
+  }
+}
+

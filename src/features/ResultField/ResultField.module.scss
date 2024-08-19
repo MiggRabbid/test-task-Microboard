@@ -1,0 +1,29 @@
+.results {
+  @apply w-[400px] h-[600px] p-3
+  flex flex-col justify-start items-center
+  gap-2 rounded-xl shadow-xl
+  bg-siteTheme-light;
+
+  &__title {
+    @apply w-full h-fit;
+
+    h5 {
+      @apply uppercase font-semibold text-2xl  
+      text-center text-siteTheme-dark;
+    }
+  }
+
+  &__main {
+    @apply w-full py-5 grow;
+
+    .main__hero {
+      @apply px-5 flex flex-row 
+      justify-between items-center;
+
+      p {
+        @apply text-siteTheme-main
+        font-semibold text-2xl uppercase;
+      }
+    }
+  }
+}
