@@ -2,15 +2,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: '/test-task-Microboard/',
-    plugins: [react()],
-    build: {
-        outDir: 'dist',
-        rollupOptions: {
-            input: {
-                main: 'index.html',
-            },
-        },
+  base: '/test-task-Microboard/',
+  plugins: [react()],
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+      },
     },
-    appType: 'spa',
+  },
+  appType: 'spa',
 });

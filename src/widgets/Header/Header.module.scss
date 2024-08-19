@@ -1,0 +1,10 @@
+.header {
+  @apply w-full h-12 py-7
+  flex justify-center items-center
+  bg-siteTheme-main;
+
+  h1 {
+    @apply w-fit h-fit
+    uppercase font-bold text-4xl text-siteTheme-ascent
+  }
+}
