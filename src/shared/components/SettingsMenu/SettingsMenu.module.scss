@@ -35,7 +35,7 @@
       @apply flex-row-reverse;
 
       .item__label {
-        @apply text-end
+        @apply text-end;
       }
 
       .item__input {
@@ -44,4 +44,3 @@
     }
   }
 }
-

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from './SettingsMenu.module.scss';
 
@@ -7,19 +7,14 @@ import { Hero } from '../../../entities/hero';
 interface iSettingsMenuProps {
   Hero: Hero;
   id: string;
+  ColorMenuIsOpen: boolean;
 }
 
 const SettingsMenu: React.FC<iSettingsMenuProps> = (props) => {
-  const { Hero, id } = props;
+  const { Hero, id, ColorMenuIsOpen } = props;
 
   const [heroSpeed, setHeroSpeed] = useState(Hero.speed);
   const [spellSpeed, setSpellSpeed] = useState(Hero.spellSpeed);
-
-  useEffect(()=> {
-    setHeroSpeed(Hero.speed)
-    setSpellSpeed(Hero.spellSpeed)
-  }, [Hero])
-
 
   const handleHeroSpeedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value);
@@ -44,10 +39,11 @@ const SettingsMenu: React.FC<iSettingsMenuProps> = (props) => {
         <input
           type="range"
           min="2"
-          max="20"
+          max="10"
           value={heroSpeed}
           onChange={handleHeroSpeedChange}
           className={styles.item__input}
+          disabled={ColorMenuIsOpen}
         />
       </div>
       <div className={styles.settings__item}>
@@ -55,10 +51,11 @@ const SettingsMenu: React.FC<iSettingsMenuProps> = (props) => {
         <input
           type="range"
           min="3"
-          max="30"
+          max="20"
           value={spellSpeed}
           onChange={handleSpellSpeedChange}
           className={styles.item__input}
+          disabled={ColorMenuIsOpen}
         />
       </div>
     </div>

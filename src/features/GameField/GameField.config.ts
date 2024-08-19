@@ -1,3 +1,4 @@
+import { Hero } from '../../entities/hero';
 import { iHeroState } from '../../models/interface';
 
 const BASE_HERO_SPEED = 5;
@@ -28,3 +29,25 @@ export const initialState: iInitialState = {
     spellColor: BASE_HERO2_COLOR,
   },
 };
+
+export const Hero1 = new Hero(
+  null,
+  initialState.Hero1.name,
+  BASE_SHIFT,
+  0,
+  initialState.Hero1.heroColor,
+  initialState.Hero1.heroSpeed,
+  initialState.Hero1.spellColor,
+  initialState.Hero1.spellSpeed,
+);
+
+export const Hero2 = new Hero(
+  null,
+  initialState.Hero2.name,
+  0,
+  BASE_SHIFT,
+  initialState.Hero2.heroColor,
+  initialState.Hero2.heroSpeed,
+  initialState.Hero2.spellColor,
+  initialState.Hero2.spellSpeed,
+);

@@ -1,7 +1,7 @@
 .container {
   @apply relative w-fit h-fit flex flex-col 
   justify-center items-center gap-[15px];
-  
+
   .canvas {
     @apply w-[800px] h-[600px]
     rounded-xl shadow-xl

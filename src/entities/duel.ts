@@ -92,9 +92,9 @@ export class Duel {
   }
 
   shoot(CurrHero: Hero) {
-    const { x, y, spellColor, spellSpeed  } = CurrHero;
+    const { x, y, spellColor, spellSpeed } = CurrHero;
     const { ctx } = this;
-    
+
     if (CurrHero === this.Hero1) {
       const direction = 1;
       const spell = new Spell(ctx, x, y, direction, spellColor, spellSpeed);

@@ -15,6 +15,6 @@ body {
 }
 
 #root {
-  @apply mx-auto min-w-80 max-w-[1920px] min-h-screen
+  @apply mx-auto min-w-80 w-screen min-h-screen
   flex flex-col justify-between items-center;
 }
